@@ -21,9 +21,9 @@ RUN echo 'http://dl-4.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositor
 WORKDIR /DATA
 VOLUME ["/DATA/htdocs", "/DATA/logs", "/DATA/backups"]
 
-ENV TERM xterm
+ENV TERM=linux SSH_PUB_KEY= SSH_PASSWORD=changeme! WWW_USER=user WWW_PASS=pass
 
-EXPOSE 22
+EXPOSE 22 80
 
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp-cli && chmod +x /usr/local/bin/wp-cli && chown www-data:www-data /usr/local/bin/wp-cli
 

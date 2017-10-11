@@ -2,12 +2,13 @@
 
 set -eo pipefail
 
-ln -s /usr/bin/php7 /usr/bin/php
+#ln -s /usr/bin/php7 /usr/bin/php
 
 if [ ! -f /etc/ssh/ssh_host_rsa_key ]; then
     ssh-keygen -b 2048 -t rsa -N "" -f /etc/ssh/ssh_host_rsa_key -q
     ssh-keygen -b 256 -t ecdsa -N "" -f /etc/ssh/ssh_host_ecdsa_key -q
     ssh-keygen -b 256 -t ed25519 -N "" -f /etc/ssh/ssh_host_ed25519_key -q
+    ssh-keygen -b 1024 -t dsa -N "" -f /etc/ssh/ssh_host_dsa_key -q
 fi
 
 if [ -n "$SSH_PUB_KEY" ]; then
@@ -24,5 +25,6 @@ if [ ! -f /usr/local/bin/wp-cli ]; then
 
 
 fi
+/usr/sbin/sshd -e
+exec /usr/bin/ttyd -p 80 -c $WWW_USER:$WWW_PASS su www-data
 
-exec /usr/sbin/sshd -De
