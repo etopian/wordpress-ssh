@@ -25,6 +25,6 @@ if [ ! -f /usr/local/bin/wp-cli ]; then
 
 
 fi
-/usr/sbin/sshd -e
-exec /usr/bin/ttyd -p 80 -c $WWW_USER:$WWW_PASS su www-data
+exec /usr/sbin/sshd -e
+#exec /usr/bin/ttyd -p 80 -c $WWW_USER:$WWW_PASS su www-data
 
