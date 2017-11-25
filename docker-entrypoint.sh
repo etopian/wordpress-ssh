@@ -14,6 +14,8 @@ fi
 if [ -n "$SSH_PUB_KEY" ]; then
 	mkdir -p /DATA/.ssh
 	echo -e "$SSH_PUB_KEY" > /DATA/.ssh/authorized_keys
+        chown www-data:www-data /DATA/.ssh
+        chown www-data:www-data /DATA/.ssh/authorized_keys
 	chmod 0700 -R /DATA/.ssh
 fi
 if [ -n "$SSH_PASSWORD" ]; then
